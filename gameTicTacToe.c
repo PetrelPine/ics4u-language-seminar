@@ -3,6 +3,8 @@
 // WRITTEN BY PETRELPINE
 // https://github.com/PetrelPine/ics4u-language-seminar
 
+// C program for Tic-Tac-Toe Game
+
 /* include header files */
 #include <stdio.h>
 #include <string.h>
