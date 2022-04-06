@@ -1,2 +1,13 @@
 ### Language Seminar Assignment 2022-04 (ICS4U0-B Ms. Wilson)
-The Github repository of my C code for ICS4U language seminar assignment.
+
+The Github repository for my ICS4U language seminar assignment.
+
+#### Included Files
+
++ Game `-` Tic Tac Toe (C)
+
++ Game `-` Tic Tac Toe (Java) (Example from the lesson)
+
++ Game `-` `2048` (C)
+
++ Game Cheat `-` PVZ Cheat (C)
