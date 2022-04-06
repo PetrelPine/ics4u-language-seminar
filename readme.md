@@ -6,7 +6,7 @@ The Github repository for my ICS4U language seminar assignment.
 
 + Game \- `Tic Tac Toe (C)`
 
-+ Game \- `Tic Tac Toe (Java)` (Example code from the lesson)
++ Game \- `Tic Tac Toe (Java)`
 
 + Game \- `2048 (C)`
 
