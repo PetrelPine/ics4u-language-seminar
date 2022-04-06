@@ -6,7 +6,6 @@
 /* include header files */
 #include <stdio.h>
 #include <string.h>
-// #include <stdarg.h>  // for dynamic parameter
 
 /* macro instructions */
 # define REFRESH_DEBUGGER fflush(stdout);  // fix the debugger display problem
@@ -79,7 +78,7 @@ int main() {
         scanf("%s", input);
         
         // for number n (10 <= n <= 99)
-        if (input[1] - 48 >= 1 && input[1] - 48 <= 9)
+        if (input[1] - 48 >= 0 && input[1] - 48 <= 9)
             num = (input[0] - 48) * 10 + (input[1] - 48);
         // for number n (1 <= n <= 9)
         else
@@ -90,7 +89,9 @@ int main() {
         
         // check number validity
         if (!(num >= 1 && num <= 9)) {
-            printf("Invalid input; re-enter slot number: ");
+            PRINT_FONT_RED
+            printf("Invalid input, please re-enter slot number: ");
+            PRINT_ATTR_REC
             REFRESH_DEBUGGER
             continue;
         }
@@ -104,7 +105,9 @@ int main() {
         }
         // the number is taken
         else {
-            printf("Slot already taken; re-enter slot number: ");
+            PRINT_FONT_RED
+            printf("Slot already taken, please re-enter slot number: ");
+            PRINT_ATTR_REC
             REFRESH_DEBUGGER
             continue;
         }
@@ -118,7 +121,7 @@ int main() {
             }
             // there is a winner
             else {
-                printf("Congratulations! %c has won! Thanks for playing.\n", winner);
+                printf("Congratulations, %c has won! Thanks for playing.\n", winner);
                 REFRESH_DEBUGGER
             }
         }
@@ -192,10 +195,10 @@ char checkWinner() {
 
 // print one position of the board
 void printBoardChar(char pos) {
-    if (pos == 'X') PRINT_FONT_RED
-    else if (pos == 'O') PRINT_FONT_GRE
+    if (pos == 'X') PRINT_FONT_BLU  // set blue
+    else if (pos == 'O') PRINT_FONT_YEL  // set yellow
     printf("%c", pos);
-    PRINT_ATTR_REC
+    PRINT_ATTR_REC  // reset
 }
 
 // print one line of the board
@@ -226,7 +229,7 @@ void printBoard() {
     printBoardLine(3);
     printf("|-----------|\n");
     printBoardLine(6);
-    printf("|---|---|---|\n");
+    printf("|---|---|---|\n\n");
     
     REFRESH_DEBUGGER
 }
