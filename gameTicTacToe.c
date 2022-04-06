@@ -179,17 +179,17 @@ char checkWinner() {
         
         // check if O wins
         if (strcmp(line, "OOO") == 0) return 'O';
-        
-        // check if draw
-        for (int i = 0; i < boardLen; i++) {
-            // board still has empty spaces (numbers)
-            if (board[i] == (char)(i + 49)) break;
-            // board is full, it's a draw case
-            else if (i == 8) return 'D';  // draw
-        }
     }
     
-    printf("%c's turn; enter a slot number to place %c in: ", turn, turn);
+    // check if draw
+    for (int i = 0; i < boardLen - 1; i++) {
+        // board still has empty spaces (numbers)
+        if (board[i] == (char)(i + 49)) break;
+        // board is full, it's a draw case
+        else if (i == 8) return 'D';  // draw
+    }
+    
+    printf("%c's turn, please enter a slot number to place %c in: ", turn, turn);
     REFRESH_DEBUGGER
     
     return 'U';  // undetermined
