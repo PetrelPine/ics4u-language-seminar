@@ -4,10 +4,10 @@ The Github repository for my ICS4U language seminar assignment.
 
 #### Included Files
 
-+ Game `-` Tic Tac Toe (C)
++ Game \- `Tic Tac Toe (C)`
 
-+ Game `-` Tic Tac Toe (Java) (Example from the lesson)
++ Game \- `Tic Tac Toe (Java)` (Example code from the lesson)
 
-+ Game `-` `2048` (C)
++ Game \- `2048 (C)`
 
-+ Game Cheat `-` PVZ Cheat (C)
++ Game Cheat \- `PVZ Cheat (C)`
