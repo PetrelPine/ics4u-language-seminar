@@ -10,4 +10,4 @@ The Github repository for my ICS4U language seminar assignment.
 
 + Game \- `2048 (C)`
 
-+ Game Cheat \- `PVZ Cheat (C)`
++ Game Cheat \- `PVZ Cheat (C (for cheat) / C++ (for interface))`
