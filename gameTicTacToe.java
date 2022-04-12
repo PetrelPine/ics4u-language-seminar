@@ -1,7 +1,9 @@
-// Example code from the lesson
-// Improved by PetrelPine
-
-// Java program for Tic-Tac-Toe Game
+/*
+* Tic Tac Toe Game (Java)
+* Language Seminar Assignment
+* Written by PetrelPine
+* https://github.com/PetrelPine/ics4u-language-seminar
+*/
 
 import java.util.*;
 
