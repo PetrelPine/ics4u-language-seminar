@@ -1,9 +1,9 @@
 /*
-* Tic Tac Toe Game (Java)
-* Language Seminar Assignment
-* Written by PetrelPine
-* https://github.com/PetrelPine/ics4u-language-seminar
-*/
+ * Tic Tac Toe Game (Java)
+ * Language Seminar Assignment
+ * Written by PetrelPine
+ * https://github.com/PetrelPine/ics4u-language-seminar
+ */
 
 import java.util.*;
 
