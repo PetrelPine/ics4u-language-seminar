@@ -12,36 +12,14 @@
 /* macro instructions */
 #define REFRESH_DEBUGGER fflush(stdout); // fix the debugger display problem
 
-// for color print
-// set output foreground
-#define PRINT_FONT_BLA printf("\033[30m"); // black
-#define PRINT_FONT_RED printf("\033[31m"); // red
-#define PRINT_FONT_GRE printf("\033[32m"); // green
-#define PRINT_FONT_YEL printf("\033[33m"); // yellow
-#define PRINT_FONT_BLU printf("\033[34m"); // blue
-#define PRINT_FONT_PUR printf("\033[35m"); // purple
-#define PRINT_FONT_CYA printf("\033[36m"); // cyan
-#define PRINT_FONT_WHI printf("\033[37m"); // white
-// set output background
-#define PRINT_BACK_BLA printf("\033[40m"); // black
-#define PRINT_BACK_RED printf("\033[41m"); // red
-#define PRINT_BACK_GRE printf("\033[42m"); // green
-#define PRINT_BACK_YEL printf("\033[43m"); // yellow
-#define PRINT_BACK_BLU printf("\033[44m"); // blue
-#define PRINT_BACK_PUR printf("\033[45m"); // purple
-#define PRINT_BACK_CYA printf("\033[46m"); // cyan
-#define PRINT_BACK_WHI printf("\033[47m"); // white
-// set output attribute
+// for print style
+// X0 black; X1 red; X2 green; X3 yellow; X4 blue; X5 purple; X6 cyan; X7 white
+// 3X foreground; 4X background
+// 0 default; 1 bold; 2 brightness half; 4 underline; 5 flashing; 7 reverse
+#define PRINT_FONT_RED printf("\033[31m"); // foreground red
+#define PRINT_FONT_YEL printf("\033[33m"); // foreground yellow
+#define PRINT_FONT_BLU printf("\033[34m"); // foreground blue
 #define PRINT_ATTR_REC printf("\033[0m");  // default
-#define PRINT_ATTR_BOL printf("\033[1m");  // bold
-#define PRINT_ATTR_LIG printf("\033[2m");  // brightness half
-#define PRINT_ATTR_LIN printf("\033[4m");  // underline
-#define PRINT_ATTR_GLI printf("\033[5m");  // flashing
-#define PRINT_ATTR_REV printf("\033[7m");  // reverse
-#define PRINT_ATTR_THI printf("\033[22m"); // density
-#define PRINT_ATTR_ULI printf("\033[24m"); // underline off
-#define PRINT_ATTR_UGL printf("\033[25m"); // flashing off
-#define PRINT_ATTR_URE printf("\033[27m"); // reverse off
 
 // for the game
 #define boardLen 10    // how many positions on the board (+1)
@@ -91,9 +69,9 @@ int main()
         // check number validity
         if (!(num >= 1 && num <= 9))
         {
-            PRINT_FONT_RED
+            PRINT_FONT_RED // set foreground red
             printf("Invalid input, please re-enter slot number: ");
-            PRINT_ATTR_REC
+            PRINT_ATTR_REC // reset output format
             REFRESH_DEBUGGER
             continue;
         }
@@ -102,19 +80,19 @@ int main()
         if (board[num - 1] == (char)num + 48)
         {
             board[num - 1] = turn; // update board
-            if (turn == 'X')
+            if (turn == 'X') // change side
                 turn = 'O';
             else
-                turn = 'X';         // change side
+                turn = 'X';
             printBoard();           // print board
             winner = checkWinner(); // try to find the winner
         }
         // the number is taken
         else
         {
-            PRINT_FONT_RED
+            PRINT_FONT_RED // set foreground red
             printf("Slot already taken, please re-enter slot number: ");
-            PRINT_ATTR_REC
+            PRINT_ATTR_REC // reset output format
             REFRESH_DEBUGGER
             continue;
         }
@@ -215,11 +193,15 @@ char checkWinner()
 // print one position of the board
 void printBoardChar(char pos)
 {
-    if (pos == 'X')
-        PRINT_FONT_BLU                          // set blue
-            else if (pos == 'O') PRINT_FONT_YEL // set yellow
-                printf("%c", pos);
-    PRINT_ATTR_REC // reset
+    if (pos == 'X') {
+        PRINT_FONT_BLU // set foregound blue
+    }
+    else if (pos == 'O') {
+        PRINT_FONT_YEL // set foregound yellow
+    }
+
+    printf("%c", pos); // print the character
+    PRINT_ATTR_REC // reset output format
 }
 
 // print one line of the board
