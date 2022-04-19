@@ -10,30 +10,26 @@
 #include <string.h>
 
 /* macro instructions */
-#define REFRESH_DEBUGGER fflush(stdout); // fix the debugger display problem
-
-// for print style
-// X0 black; X1 red; X2 green; X3 yellow; X4 blue; X5 purple; X6 cyan; X7 white
-// 3X foreground; 4X background
+// for output styles
+// ?0 black; ?1 red; ?2 green; ?3 yellow; ?4 blue; ?5 purple; ?6 cyan; ?7 white
+// 3? foreground; 4? background
 // 0 default; 1 bold; 2 brightness half; 4 underline; 5 flashing; 7 reverse
 #define PRINT_FONT_RED printf("\033[31m"); // foreground red
 #define PRINT_FONT_YEL printf("\033[33m"); // foreground yellow
 #define PRINT_FONT_BLU printf("\033[34m"); // foreground blue
 #define PRINT_ATTR_REC printf("\033[0m");  // default
-
 // for the game
 #define boardLen 10    // how many positions on the board (+1)
 #define boardLineLen 4 // how many positions in one line of board (+1)
 
-// globe variables of the game
+/* globe variables of the game */
 char board[boardLen] = "123456789"; // initialize the board of the game
 char turn = 'X';                    // indicate whose turn is ('X' or 'O')
 char winner = 'U';                  // indicate who is the winner ('U'(undetermined), 'D'(draw), 'X' or 'O')
 
-// declarations of functions
+/* declarations of functions */
 void setLine(char[boardLineLen], int, int, int); // for checkWinner function, set the checking string (char array)
-char checkWinner(); // check if the game is over and try to find the winner, return the winner status
-
+char checkWinner();        // check if the game is over and try to find the winner, return the winner status
 void printBoardChar(char); // print one position of the board
 void printBoardLine(int);  // print one line of the board
 void printBoard();         // print the whole board
@@ -42,11 +38,8 @@ void printBoard();         // print the whole board
 int main()
 {
     printf("Welcome to 3x3 Tic Tac Toe.\n");
-    REFRESH_DEBUGGER
-
     printBoard();
     printf("X will play first. Enter a slot number to place X in: ");
-    REFRESH_DEBUGGER
 
     char input[100] = {0}; // user input
     int num;               // the slot number that the user takes in a round
@@ -64,7 +57,6 @@ int main()
             num = input[0] - 48;
 
         // printf("The number you have typed: %d\n", num);
-        // REFRESH_DEBUGGER
 
         // check number validity
         if (!(num >= 1 && num <= 9))
@@ -72,7 +64,6 @@ int main()
             PRINT_FONT_RED // set foreground red
             printf("Invalid input, please re-enter slot number: ");
             PRINT_ATTR_REC // reset output format
-            REFRESH_DEBUGGER
             continue;
         }
 
@@ -80,7 +71,7 @@ int main()
         if (board[num - 1] == (char)num + 48)
         {
             board[num - 1] = turn; // update board
-            if (turn == 'X') // change side
+            if (turn == 'X')       // change side
                 turn = 'O';
             else
                 turn = 'X';
@@ -93,7 +84,6 @@ int main()
             PRINT_FONT_RED // set foreground red
             printf("Slot already taken, please re-enter slot number: ");
             PRINT_ATTR_REC // reset output format
-            REFRESH_DEBUGGER
             continue;
         }
 
@@ -102,16 +92,10 @@ int main()
         {
             // it is draw
             if (winner == 'D')
-            {
                 printf("It's a draw! Thanks for playing.\n");
-                REFRESH_DEBUGGER
-            }
             // there is a winner
             else
-            {
                 printf("Congratulations, %c has won! Thanks for playing.\n", winner);
-                REFRESH_DEBUGGER
-            }
         }
     }
 
@@ -181,13 +165,12 @@ char checkWinner()
             break;
         // board is full, it's a draw case
         else if (i == 8)
-            return 'D'; // draw
+            return 'D'; // draw case
     }
 
     printf("%c's turn, please enter a slot number to place %c in: ", turn, turn);
-    REFRESH_DEBUGGER
 
-    return 'U'; // undetermined
+    return 'U'; // undetermined case
 }
 
 // print one position of the board
@@ -201,12 +184,13 @@ void printBoardChar(char pos)
     }
 
     printf("%c", pos); // print the character
-    PRINT_ATTR_REC // reset output format
+    PRINT_ATTR_REC     // reset output format
 }
 
 // print one line of the board
-void printBoardLine(int start_pos)
+void printBoardLine(int line_num)
 {
+    int start_pos = (line_num - 1) * (boardLineLen - 1);
     printf("| ");
     for (int i = start_pos; i < start_pos + boardLineLen - 1; i++)
     {
@@ -230,12 +214,10 @@ board example
 void printBoard()
 {
     printf("|---|---|---|\n");
-    printBoardLine(0);
+    printBoardLine(1);
+    printf("|-----------|\n");
+    printBoardLine(2);
     printf("|-----------|\n");
     printBoardLine(3);
-    printf("|-----------|\n");
-    printBoardLine(6);
     printf("|---|---|---|\n\n");
-
-    REFRESH_DEBUGGER
 }
