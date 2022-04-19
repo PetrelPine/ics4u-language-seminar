@@ -1,7 +1,7 @@
 /*
  * 2048 Game
  * Language Seminar Assignment
- * Modified by PetrelPine
+ * Written by PetrelPine
  * https://github.com/PetrelPine/ics4u-language-seminar
  */
 
@@ -130,32 +130,34 @@ void loop_game()
         switch (cmd)
         {
         case 'a':
-        case 75:
+        // case 75:
             move_left();
             break;
         case 's':
-        case 80:
+        // case 80:
             move_down();
             break;
         case 'w':
-        case 72:
+        // case 72:
             move_up();
             break;
         case 'd':
-        case 77:
+        // case 77:
             move_right();
             break;
         case 'q':
-        case 27:
+        // case 27:
             prepare_exit = 1;
             break;
         default:
             continue;
         }
+
         // player has broken the highest score record
         if (score > best)
         {
             best = score;
+            // save new best score to file
             FILE *fp = fopen(config_path, "w");
             if (fp)
             {
@@ -164,7 +166,7 @@ void loop_game()
             }
         }
 
-        // random numbers are generated and the screen needs to be refreshed, and vice versa
+        // random numbers are generated and the screen needs to be refreshed
         if (need_add_num)
         {
             add_rand_num();
@@ -188,11 +190,9 @@ void reset_game()
     // one of the two numbers that appear when the game is initialized must be 2, so randomly generates a 2 and
     // everything else are zeros
     int n = rand() % 16;
-    int i;
-    for (i = 0; i < 4; ++i)
+    for (int i = 0; i < 4; ++i)
     {
-        int j;
-        for (j = 0; j < 4; ++j)
+        for (int j = 0; j < 4; ++j)
         {
             board[i][j] = (n-- == 0 ? 2 : 0);
         }
@@ -211,11 +211,9 @@ void add_rand_num()
 {
     srand((unsigned int)time(0));
     int n = rand() % get_null_count(); // determine the position of the generated random number
-    int i;
-    for (i = 0; i < 4; ++i)
+    for (int i = 0; i < 4; ++i)
     {
-        int j;
-        for (j = 0; j < 4; ++j)
+        for (int j = 0; j < 4; ++j)
         {
             // if it is the position to generate numbers
             if (board[i][j] == 0 && n-- == 0)
@@ -231,11 +229,9 @@ void add_rand_num()
 int get_null_count()
 {
     int n = 0;
-    int i;
-    for (i = 0; i < 4; ++i)
+    for (int i = 0; i < 4; ++i)
     {
-        int j;
-        for (j = 0; j < 4; ++j)
+        for (int j = 0; j < 4; ++j)
         {
             board[i][j] == 0 ? ++n : 1;
         }
@@ -281,8 +277,7 @@ void move_left()
         // (merged), and the loop enters with k<j
         for (int j = 1, k = 0; j < 4; ++j)
         {
-            if (board[i][j] >
-                0) // Find the first non-empty term after k, subscript j, and then there are three different situations
+            if (board[i][j] > 0) // Find the first non-empty term after k, subscript j, and then there are three different situations
             {
                 if (board[i][k] == board[i][j])
                 {
@@ -319,11 +314,9 @@ void move_left()
 void move_right()
 {
     // similar to the left shift operation, the only difference is that both j and K are traversed backwards
-    int i;
-    for (i = 0; i < 4; ++i)
+    for (int i = 0; i < 4; ++i)
     {
-        int j, k;
-        for (j = 2, k = 3; j >= 0; --j)
+        for (int j = 2, k = 3; j >= 0; --j)
         {
             if (board[i][j] > 0)
             {
@@ -358,11 +351,9 @@ void move_up()
 {
     // similar to the left shift operation, the only difference is that
     // after the row and column swap traversal
-    int i;
-    for (i = 0; i < 4; ++i)
+    for (int i = 0; i < 4; ++i)
     {
-        int j, k;
-        for (j = 1, k = 0; j < 4; ++j)
+        for (int j = 1, k = 0; j < 4; ++j)
         {
             if (board[j][i] > 0)
             {
@@ -482,7 +473,7 @@ void refresh_scr()
                         n = n >> 1;
                         if (n == 1)
                         {
-                            printf("2^%02d|", k);
+                            printf("2^%02d|", k); // numbers larger than four digits are expressed as powers of two, such as 2^13
                             break;
                         }
                     }
@@ -522,6 +513,7 @@ void refresh_scr()
     if (prepare_exit)
     {
         printf("\r                   DO YOU REALLY WANT TO QUIT THE GAME? [Y/N]:   \b\b");
+        
         CONSOLE_CURSOR_INFO info = {1, 1};
         SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info);
     }
@@ -532,7 +524,7 @@ void refresh_scr()
 // initialize the game
 void init_game()
 {
-    system("cls");
+    system("cls"); // clear screen
 
     // Get the game save path: C:\Users\UserName\AppData\Local\2048 (for Windows)
     char m_lpszDefaultDir[MAX_PATH];
