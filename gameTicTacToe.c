@@ -6,14 +6,16 @@
  */
 
 /* include header files */
-#include <stdio.h>
-#include <string.h>
+#include <stdio.h>  // standard input and output
+#include <string.h> // defines several functions to manipulate C strings and arrays
 
 /* macro instructions */
 // for output styles
+#pragma region style_explanation
 // ?0 black; ?1 red; ?2 green; ?3 yellow; ?4 blue; ?5 purple; ?6 cyan; ?7 white
 // 3? foreground; 4? background
 // 0 default; 1 bold; 2 brightness half; 4 underline; 5 flashing; 7 reverse
+#pragma endregion
 #define PRINT_FONT_RED printf("\033[31m"); // foreground red
 #define PRINT_FONT_YEL printf("\033[33m"); // foreground yellow
 #define PRINT_FONT_BLU printf("\033[34m"); // foreground blue
@@ -41,7 +43,7 @@ int main()
     printBoard();
     printf("X will play first. Enter a slot number to place X in: ");
 
-    char input[100] = {0}; // user input
+    char input[100] = {0}; // to store user input, initialize all positions to 0
     int num;               // the slot number that the user takes in a round
 
     // the winner is undetermined
