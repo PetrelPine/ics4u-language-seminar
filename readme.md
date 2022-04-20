@@ -13,3 +13,13 @@ The Github repository for my ICS4U language seminar assignment.
 + Game Cheat \- `PVZ Cheat (C)`
 
 + Game Cheat \- `PVZ Cheat (Interface) (C/C++)`
+
++ Tutorial
+
++ + Practice  \- `Hello World`
+
++ + Practice  \- `Pointers`
+
++ + Game \- `Guess Number`
+
++ + Game \- `Guess Number (Improved)`
