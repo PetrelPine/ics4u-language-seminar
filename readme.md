@@ -16,10 +16,10 @@ The Github repository for my ICS4U language seminar assignment.
 
 + Tutorial
 
-+ + Practice  \- `Hello World`
+    + Practice  \- `Hello World`
 
-+ + Practice  \- `Pointers`
+    + Practice  \- `Pointers`
 
-+ + Game \- `Guess Number`
+    + Game \- `Guess Number`
 
-+ + Game \- `Guess Number (Improved)`
+    + Game \- `Guess Number (Improved)`
