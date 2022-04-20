@@ -79,7 +79,7 @@ void loop_game()
 {
     while (1)
     {
-        int cmd = read_keyboard(); // Receive standard input stream character command
+        int cmd = read_keyboard(); // Receive a character from standard input stream
 
         // if want to quit the game
         if (prepare_exit)
@@ -189,12 +189,12 @@ void reset_game()
 
     // one of the two numbers that appear when the game is initialized must be 2, so randomly generates a 2 and
     // everything else are zeros
-    int n = rand() % 16;
+    int n = rand() % 16; // random number from 0 to 15
     for (int i = 0; i < 4; ++i)
     {
         for (int j = 0; j < 4; ++j)
         {
-            board[i][j] = (n-- == 0 ? 2 : 0);
+            board[i][j] = (n-- == 0 ? 2 : 0); // set only one position on the board to 2
         }
     }
 
