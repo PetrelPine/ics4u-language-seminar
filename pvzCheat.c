@@ -143,7 +143,7 @@ void WriteMemory(void *valueToWrite, DWORD valueSize, ...)
     }
 }
 
-// read the current sun number in the game
+// function to read the current sun number in the game
 DWORD readSunNum()
 {
     DWORD dwSunBaseAddress = 0x6A9EC0; // base address
@@ -156,7 +156,7 @@ DWORD readSunNum()
     return dwSunNum;
 }
 
-// change the current sun number in the game
+// function to change the current sun number in the game
 void changeSunNum(DWORD *dwSunNumNew)
 {
     DWORD dwSunBaseAddress = 0x6A9EC0; // base address
@@ -169,7 +169,7 @@ void changeSunNum(DWORD *dwSunNumNew)
     printf("Sun number is changed to %lu.\n", *dwSunNumNew);
 }
 
-// switch the CD status of the plants in the game (CD is on / CD is off)
+// function to switch the CD status of the plants in the game (CD is on / CD is off)
 void noCD(boolean choice)
 {
     DWORD dwCDBaseAddress = 0x487296;

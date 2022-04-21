@@ -19,5 +19,5 @@ int main()
 	
 	printf("Hello World!"); // a function named printf, it is defined in stdio.h
 
-	return 0; // indicated the end of the main function, exit code 0 here means the execution is successful.
+	return 0; // indicated the end of the main function, exit code 0 here means the execution is successful and doesn't have any errors.
 }
