@@ -13,13 +13,13 @@ int main()
 {
     int lowerBound = 1, upperBound = 10; // set the boundary of random numbers
 
-    // generate a random number as the answer
+    // generate a random number (integer) as the answer
     // use time as the seed to rearrange the random numbers, this is to
     // make sure every time you run this program, it will generate a new random number
     srand((unsigned)time(NULL));
     int answer = rand() % upperBound + 1; // (random number range: 1 ~ 30)
 
-    printf("TEST: The answer is %d\n", answer); // test
+    // printf("TEST: The answer is %d\n", answer); // test
 
     char guess[30] = {0}; // store the player input
     int guessNum = 0;     // store the number player guessed
