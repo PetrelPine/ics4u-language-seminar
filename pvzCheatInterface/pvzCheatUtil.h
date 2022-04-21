@@ -1,11 +1,11 @@
 /*
- * PVZ Cheat
+ * PVZ Cheat (Interface)
  * Language Seminar Assignment
  * Written by PetrelPine
  * https://github.com/PetrelPine/ics4u-language-seminar
  */
 
-#pragma once
+#pragma once // this file can only be included once
 
 #include <Windows.h>
 #include <stdio.h>
@@ -15,6 +15,7 @@ namespace pvzCheatUtil
 static HWND hwnd;
 static HANDLE hProcess;
 
+// function to gain access to the game
 void openProcess()
 {
     // find game process
@@ -49,6 +50,7 @@ void openProcess()
         printf("openProcess: process opened.\n");
 }
 
+// function to read the value in a specific memory address
 DWORD ReadMemory(DWORD placeHolder, ...)
 {
     if (hProcess == NULL)
@@ -78,6 +80,7 @@ DWORD ReadMemory(DWORD placeHolder, ...)
     return lastAddressValue;
 }
 
+// function to write a value into a specific memory address
 void WriteMemory(void *valueToWrite, DWORD valueSize, ...)
 {
     if (valueToWrite == NULL || valueSize == 0 || hProcess == NULL)
@@ -110,6 +113,7 @@ void WriteMemory(void *valueToWrite, DWORD valueSize, ...)
     }
 }
 
+// function to read the current sun number in the game
 DWORD readSunNum()
 {
     DWORD dwSunBaseAddress = 0x6A9EC0; // base address
@@ -123,6 +127,7 @@ DWORD readSunNum()
     return dwSunNum;
 }
 
+// function to change the current sun number in the game
 void changeSunNum(DWORD *dwSunNumNew)
 {
     DWORD dwSunBaseAddress = 0x6A9EC0; // base address
@@ -135,6 +140,7 @@ void changeSunNum(DWORD *dwSunNumNew)
     printf("Sun number is changed to %lu.\n", *dwSunNumNew);
 }
 
+// function to switch the CD status of the plants in the game (CD is on / CD is off)
 void noCD(boolean choice)
 {
     DWORD dwCDBaseAddress = 0x487296;

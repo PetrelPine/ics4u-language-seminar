@@ -1,15 +1,14 @@
 /*
- * PVZ Cheat
+ * PVZ Cheat (Interface)
  * Language Seminar Assignment
  * Written by PetrelPine
  * https://github.com/PetrelPine/ics4u-language-seminar
  */
 
-#pragma once
+#pragma once // this file can only be included once
 
-#include "pvzCheatUtil.h"
-#include <Windows.h>
-#include <msclr/marshal_cppstd.h>
+#include "pvzCheatUtil.h" // " " used to include programmer-defined header files
+#include <Windows.h>      // < > used to include standard library header files
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,10 +38,9 @@ ref class MyForm : public System::Windows::Forms::Form
     MyForm(void)
     {
         InitializeComponent();
+
+        // the constructor code is here
         pvzCheatUtil::openProcess();
-        //
-        // TODO: Add the constructor code here
-        //
     }
 
   protected:
@@ -176,38 +174,40 @@ ref class MyForm : public System::Windows::Forms::Form
 #pragma endregion
 
   private:
+    // when the "Get" button is clicked
     System::Void buttonGetSunNum_Click(System::Object ^ sender, System::EventArgs ^ e)
     {
-        DWORD sunNum = pvzCheatUtil::readSunNum();
-        textBoxSunNum->Text = sunNum.ToString();
+        DWORD sunNum = pvzCheatUtil::readSunNum(); // read the current sun number in the game
+        textBoxSunNum->Text = sunNum.ToString();   // update the textbox to show the current sum number in the game
     }
 
   private:
+    // when the "Change" button is clicked
     System::Void buttonChangeSunNum_Click(System::Object ^ sender, System::EventArgs ^ e)
     {
-        String ^ sunNum = textBoxSunNum->Text;
-        std::string converted_sunNum = msclr::interop::marshal_as<std::string>(sunNum);
-        int value = 0;
+        int sunNumNewTemp = 0;
         try
         {
-            value = Convert::ToInt32(textBoxSunNum->Text);
+            sunNumNewTemp = Convert::ToInt32(textBoxSunNum->Text); // get the number typed in the textbox and convert it to an integer
         }
         catch (...)
         {
-            printf("Error");
+            printf("An error occurred when converting the sun number to an integer.\n");
+            // printf("Sun number is changed to %d.\n", sunNumNewTemp);
         }
-        DWORD a = value;
-        pvzCheatUtil::changeSunNum(&a);
+        DWORD sunNumNew = sunNumNewTemp; // convert the type from int to DWORD
+        pvzCheatUtil::changeSunNum(&sunNumNew);
     }
 
   private:
+    // when toggling the "Plants no CD" checkbox
     System::Void checkBoxNoCD_Click(System::Object ^ sender, System::EventArgs ^ e)
     {
-        if (checkBoxNoCD->Checked)
+        if (checkBoxNoCD->Checked) // if the checkbox is ticked (turn on no CD)
         {
             pvzCheatUtil::noCD(true);
         }
-        else
+        else // if the checkbox is unticked (turn off no CD)
         {
             pvzCheatUtil::noCD(false);
         }

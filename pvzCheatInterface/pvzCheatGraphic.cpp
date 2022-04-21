@@ -1,5 +1,5 @@
 /*
- * PVZ Cheat
+ * PVZ Cheat (Interface)
  * Language Seminar Assignment
  * Written by PetrelPine
  * https://github.com/PetrelPine/ics4u-language-seminar
@@ -13,6 +13,7 @@
 using namespace System;
 using namespace System::Windows::Forms;
 
+// the main function is used to display the interface of the cheater
 int main()
 {
     Application::EnableVisualStyles();
