@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h> // srand
-#include <time.h> // time
+#include <time.h>   // time
 
 int main()
 {
@@ -17,7 +17,7 @@ int main()
     // use time as the seed to rearrange the random numbers, this is to 
     // make sure every time you run this program, it will generate a new random number
     srand((unsigned)time(NULL)); 
-    int answer = rand() % upperBound + 1; // (random number range: 1 ~ 30)
+    int answer = rand() % upperBound + 1; // (random number range: 1 ~ 10)
 
     // printf("TEST: The answer is %d\n", answer); // test
 
@@ -26,8 +26,8 @@ int main()
     // do while loop, stops until the player gets the answer
     do
     {
-        printf("Enter the number you guessed: ");
-        scanf("%d", &guess);
+        printf("Enter the number you guessed (range %d to %d): ", lowerBound, upperBound);
+        scanf("%d", &guess); // if the input is not an integer, it will result in an infinite loop
         // printf("The number you entered: %d\n", guess);
 
         // check if the player gets the answer

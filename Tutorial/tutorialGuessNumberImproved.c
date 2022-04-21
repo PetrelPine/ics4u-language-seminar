@@ -17,7 +17,7 @@ int main()
     // use time as the seed to rearrange the random numbers, this is to
     // make sure every time you run this program, it will generate a new random number
     srand((unsigned)time(NULL));
-    int answer = rand() % upperBound + 1; // (random number range: 1 ~ 30)
+    int answer = rand() % upperBound + 1; // (random number range: 1 ~ 10)
 
     // printf("TEST: The answer is %d\n", answer); // test
 
@@ -31,13 +31,13 @@ int main()
         scanf("%s", guess);
         // printf("The number you entered: %s\n", guess);
 
-        // change the input from string to integer
+        // convert the input from string to integer
         guessNum = atoi(guess);
         // if no valid conversion could be performed, atoi returns zero
         if (guessNum == 0)
         {
             printf("Invalid input!\n\n");
-            continue;
+            continue; // start the next round
         }
 
         // check if the player gets the answer

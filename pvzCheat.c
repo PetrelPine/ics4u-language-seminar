@@ -9,19 +9,12 @@
 #include <stdio.h>
 #include <windows.h>
 
-#define REFRESH_DEBUGGER fflush(stdout); // fix the debugger display problem
-
 // declarations of functions
 void hookProcess();
-
 DWORD ReadMemory(DWORD placeHolder, ...);
-
 void WriteMemory(void *, DWORD, ...);
-
 DWORD readSunNum();
-
 void changeSunNum(DWORD);
-
 void noCD(boolean);
 
 // global variables
@@ -30,27 +23,25 @@ static HANDLE hProcess; // process handle of the game
 // main function
 int main()
 {
-    /* gain access to the game */
+    // gain access to the game
     hookProcess();
 
-    /* read sun number */
+    // read sun number
     DWORD dwSunNum = readSunNum();
     printf("Current sun number: %lu.\n", dwSunNum);
-    REFRESH_DEBUGGER
 
-    /* change sun number */
+    // change sun number
     if (1)
     {
-        // get new sun number
+        // the new sun number that you want to change to
         DWORD dwSunNumNew = 2000;
-        /*printf("Please enter the new sun number:\n");
-        REFRESH_DEBUGGER
-        scanf("%lu", &dwSunNumNew);*/
-        // printf("New sun number: %lu.\n", dwSunNumNew); REFRESH_DEBUGGER
+        // printf("Please enter the new sun number:\n");
+        // scanf("%lu", &dwSunNumNew);
+        // printf("New sun number: %lu.\n", dwSunNumNew);
         changeSunNum(&dwSunNumNew);
     }
 
-    /* plants no CD */
+    // plants no CD
     boolean choiceNoCD = TRUE;
     // boolean choiceNoCD = FALSE;
     noCD(choiceNoCD);
@@ -58,6 +49,7 @@ int main()
     return 0;
 }
 
+// function to gain access to the game
 void hookProcess()
 {
     // find game process
@@ -65,12 +57,10 @@ void hookProcess()
     if (hwnd == NULL)
     {
         printf("ERROR: Cannot find window.\n");
-        REFRESH_DEBUGGER
         exit(-1); // exit program
     }
     else
         printf("SUCCESS: Window found.\n");
-    REFRESH_DEBUGGER
 
     // find game process ID
     DWORD dwPID = 0;
@@ -78,26 +68,23 @@ void hookProcess()
     if (dwPID == 0)
     {
         printf("ERROR: Cannot find process ID.\n");
-        REFRESH_DEBUGGER
         exit(-1); // exit program
     }
     else
         printf("SUCCESS: Process ID found.\n");
-    REFRESH_DEBUGGER
 
     // access game process
     hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwPID);
     if (hProcess == NULL)
     {
         printf("ERROR: Cannot open process.\n");
-        REFRESH_DEBUGGER
         exit(-1); // exit program
     }
     else
         printf("SUCCESS: Process opened.\n");
-    REFRESH_DEBUGGER
 }
 
+// function to read the value in a specific memory address
 DWORD ReadMemory(DWORD placeHolder, ...)
 {
     if (hProcess == NULL)
@@ -125,6 +112,7 @@ DWORD ReadMemory(DWORD placeHolder, ...)
     return lastAddressValue;
 }
 
+// function to write a value into a specific memory address
 void WriteMemory(void *valueToWrite, DWORD valueSize, ...)
 {
     if (valueToWrite == NULL || valueSize == 0 || hProcess == NULL)
@@ -155,6 +143,7 @@ void WriteMemory(void *valueToWrite, DWORD valueSize, ...)
     }
 }
 
+// read the current sun number in the game
 DWORD readSunNum()
 {
     DWORD dwSunBaseAddress = 0x6A9EC0; // base address
@@ -167,6 +156,7 @@ DWORD readSunNum()
     return dwSunNum;
 }
 
+// change the current sun number in the game
 void changeSunNum(DWORD *dwSunNumNew)
 {
     DWORD dwSunBaseAddress = 0x6A9EC0; // base address
@@ -179,6 +169,7 @@ void changeSunNum(DWORD *dwSunNumNew)
     printf("Sun number is changed to %lu.\n", *dwSunNumNew);
 }
 
+// switch the CD status of the plants in the game (CD is on / CD is off)
 void noCD(boolean choice)
 {
     DWORD dwCDBaseAddress = 0x487296;

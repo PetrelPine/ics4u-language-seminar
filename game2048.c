@@ -59,14 +59,14 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-//// use "chcp 65001" change the encoding of cmd to utf-8
-// void cmd_encoding()
-//{
-//#ifdef WIN32
-//     system("chcp 65001");
-//     system("cls");
-//#endif
-// }
+/* // use command "chcp 65001" to change the encoding of cmd to utf-8
+void cmd_encoding()
+{
+#ifdef WIN32
+    system("chcp 65001");
+    system("cls");
+#endif
+} */
 
 // read keyboard
 int read_keyboard()
